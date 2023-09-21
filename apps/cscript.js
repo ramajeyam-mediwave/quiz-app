@@ -21,20 +21,38 @@ let questions = [
 function makeQuizeDiv(quiz) {
   
     const div = document.createElement("div");
+    div.setAttribute("id", `question-${quiz["id"]}`);
     div.setAttribute("class", "quiz-app");
+
+
     const h2 = document.createElement("h2");
     h2.innerText = quiz["question"];
-    const list = document.createElement("li");
-    const input = document.createElement("input")
-    input.type="radio";
-    const p =document.createElement("p")
-    p.innerText = quiz["options"];
 
-    const deleteBtn = document.createElement("button");
+    const subDiv = document.createElement("div")
+    subDiv.setAttribute("class", "subdiv")
+
+    for(let i=0; i<quiz.options.length;i++){
+    const label = document.createElement("label")
+
+    const radio = document.createElement("input")
+    radio.setAttribute("type","radio")
+    radio.setAttribute("class","radioBtn")
+    radio.value = quiz.options[i];
+
+    label.appendChild(radio);
+    label.appendChild(document.createTextNode( quiz.options[i]));
+     subDiv.appendChild(label);
+
+    }
+
+
+
+    
+
+    
     div.appendChild(h2);
-    list.appendChild(input)
-    list.appendChild(p)
-    div.appendChild(list);
+    div.appendChild(subDiv);
+ 
     return div;
   
 }

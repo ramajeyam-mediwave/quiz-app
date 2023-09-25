@@ -1,12 +1,12 @@
 const state = {
   categories: [
     {
-      id:100,
+      id: 100,
       name: "Computer Science",
       value: "computer",
     },
     {
-      id:200,
+      id: 200,
       name: "biology",
       value: "bio",
     },
@@ -16,111 +16,71 @@ const state = {
       id: 220,
       question: "What does CPU stand for?",
       options: [
-        {id: 10, text:"Central Processing Unit",isCorrect: true},
-        {id: 20, text:"Computer Personal Unit", isCorrect:false},
-        {id: 30, text:"Central Process Unit",isCorrect:false},
-        {id:40, text:"Central Processor Unit",isCorrect:false},
-        ],
-      category: 2345,
-      
+        { id: 10, text: "Central Processing Unit", isCorrect: true },
+        { id: 20, text: "Computer Personal Unit", isCorrect: false },
+        { id: 30, text: "Central Process Unit", isCorrect: false },
+        { id: 40, text: "Central Processor Unit", isCorrect: false },
+      ],
+      category: 100,
     },
     {
       id: 230,
       question: "Which programming language is often used for web development?",
       options: [
-                {id:50,text:"Python", isCorrect:false},
-                {id:51,text:"java", isCorrect:false},
-                {id:52,text:"javascript", isCorrect:true},
-                {id:53,text:"c++", isCorrect:false},
-              ],
-      category:2346
-    },]}
+        { id: 50, text: "Python", isCorrect: false },
+        { id: 51, text: "java", isCorrect: false },
+        { id: 52, text: "javascript", isCorrect: true },
+        { id: 53, text: "c++", isCorrect: false },
+      ],
+      category: 100,
+    },
+    {
+      id: 240,
+      question: "What does HTML stand for?",
+      options: [
+        { id: 50, text: "Hypertext Markup Language", isCorrect: true },
+        { id: 51, text: "Hypelink Markup Language", isCorrect: false },
+        { id: 52, text: "Markup Language", isCorrect: false },
+        { id: 53, text: "text Markup Language", isCorrect: false },
+      ],
+      category: 100,
+    },
 
-
-
-
-// const category = [
-//   {
-//     id: 100,
-//     name: "Computer Science",
-//     value: "computer",
-//   },
-//   {
-//     id: 200,
-//     name: "biology",
-//     value: "bio",
-//   },
-// ];
-const computer = [
-  {
-    id: 220,
-    question: "What does CPU stand for?",
-    options: [
-      { id: 10, text: "Central Processing Unit", isCorrect: true },
-      { id: 20, text: "Computer Personal Unit", isCorrect: false },
-      { id: 30, text: "Central Process Unit", isCorrect: false },
-      { id: 40, text: "Central Processor Unit", isCorrect: false },
-    ],
-    category: 2345,
-  },
-  {
-    id: 230,
-    question: "Which programming language is often used for web development?",
-    options: [
-      { id: 50, text: "Python", isCorrect: false },
-      { id: 51, text: "java", isCorrect: false },
-      { id: 52, text: "javascript", isCorrect: true },
-      { id: 53, text: "c++", isCorrect: false },
-    ],
-    category: 2346,
-  },
-  {
-    id: 240,
-    question: "What does HTML stand for?",
-    options: [
-      { id: 50, text: "Hypertext Markup Language", isCorrect: true },
-      { id: 51, text: "Hypelink Markup Language", isCorrect: false },
-      { id: 52, text: "Markup Language", isCorrect: false },
-      { id: 53, text: "text Markup Language", isCorrect: false },
-    ],
-    category: 2347,
-  },
-];
-const bio = [
-  {
-    id: "250",
-    question: "The human heart is ",
-    options: [
-      { id: 54, text: "Neurogenic heart", isCorrect: false },
-      { id: 55, text: "Myogenic heart", isCorrect: true },
-      { id: 56, text: "heart", isCorrect: false },
-      { id: 57, text: "Neurogenic", isCorrect: false },
-    ],
-    category: 2350,
-  },
-  {
-    id: "260",
-    question: "Spermology is the study of ",
-    options: [
-      { id: 59, text: "Seed", isCorrect: true },
-      { id: 60, text: "leaf", isCorrect: false },
-      { id: 61, text: "tree", isCorrect: true },
-      { id: 52, text: "grass", isCorrect: true },
-    ],
-    category: 2360,
-  },
-  {
-    id: "270",
-    question: "Who is known as father of Zoology ",
-    options: [
-      { id: 55, text: "Darwin", isCorrect: false },
-      { id: 56, text: "Aristotlee", isCorrect: false },
-      { id: 57, text: "Aristotle", isCorrect: true },
-      { id: 58, text: "thoms", isCorrect: true },
-    ],
-    category: 2370,
-  },
-];
+    {
+      id: "250",
+      question: "The human heart is ",
+      options: [
+        { id: 54, text: "Neurogenic heart", isCorrect: false },
+        { id: 55, text: "Myogenic heart", isCorrect: true },
+        { id: 56, text: "heart", isCorrect: false },
+        { id: 57, text: "Neurogenic", isCorrect: false },
+      ],
+      category: 200,
+    },
+    {
+      id: "260",
+      question: "Spermology is the study of ",
+      options: [
+        { id: 59, text: "Seed", isCorrect: true },
+        { id: 60, text: "leaf", isCorrect: false },
+        { id: 61, text: "tree", isCorrect: true },
+        { id: 52, text: "grass", isCorrect: true },
+      ],
+      category: 200,
+    },
+    {
+      id: "270",
+      question: "Who is known as father of Zoology ",
+      options: [
+        { id: 55, text: "Darwin", isCorrect: false },
+        { id: 56, text: "Aristotlee", isCorrect: false },
+        { id: 57, text: "Aristotle", isCorrect: true },
+        { id: 58, text: "thoms", isCorrect: true },
+      ],
+      category: 200,
+    },
+  ],
+};
 
 const appdiv = document.querySelector("#app");
 appdiv.style.display = "none";
@@ -132,7 +92,6 @@ document.getElementById("submit").addEventListener("click", function (e) {
   const appdiv = document.querySelector("#app");
   const quizdiv = document.querySelector("#quizForm");
   let selectedValue = categorySelect.value;
-  let categoryindex = categorySelect
   console.log(selectedValue);
 
   appdiv.style.display = "block";
@@ -141,22 +100,11 @@ document.getElementById("submit").addEventListener("click", function (e) {
 });
 for (let sub of state.categories) {
   const option = document.createElement("option");
-  option.value = sub.value;
+  // option.value = sub.value;
+  option.value = sub.id;
   option.innerHTML = sub.name;
   categorySelect.appendChild(option);
 }
-
-// {
-//   id: "1",
-//   question: "The human heart is ",
-//   options: [" Neurogenic heart", "Myogenic heart", "Ampullary", "Pulsating"],
-//   answer: "Myogenic heart",
-// },
-
-const questionCollection = {
-  computer: computer,
-  bio: bio,
-};
 
 function makeQuizDiv(quiz) {
   const div = document.createElement("div");
@@ -217,11 +165,18 @@ function appendToApp(quizDiv) {
   const app = document.querySelector("#app");
   app.appendChild(quizDiv);
 }
+
 function updateQuizListUI(sub) {
+  quizForm.style.display = "none";
+  appdiv.style.display = "block";
+  setCategoryInStorage(sub);
   const app = document.querySelector("#app");
   app.innerHTML = "";
-  for (let i = 0; i < questionCollection[sub].length; i++) {
-    const quizDiv = makeQuizDiv(questionCollection[sub][i]);
+
+  // filter questions that have the category `sub`
+  const filteredQuestions = state.questions.filter((q) => q.category == sub);
+  for (let i = 0; i < filteredQuestions.length; i++) {
+    const quizDiv = makeQuizDiv(filteredQuestions[i]);
     appendToApp(quizDiv);
   }
 }
@@ -234,4 +189,23 @@ function goBack() {
   const quizdiv = document.querySelector("#quizForm");
   appdiv.style.display = "none";
   quizdiv.style.display = "block";
+  setCategoryInStorage("");
 }
+
+function setCategoryInStorage(categoryId) {
+  localStorage.setItem("selected_category", categoryId);
+}
+
+function getCategoryFromStorage(categoryId) {
+  return localStorage.getItem("selected_category");
+}
+
+// on page load, if a category is found in storage
+// show all questions belonging to that category
+function checkIfCategoryIsSaved() {
+  const storedCategory = getCategoryFromStorage();
+  if (storedCategory) {
+    updateQuizListUI(storedCategory);
+  }
+}
+checkIfCategoryIsSaved();

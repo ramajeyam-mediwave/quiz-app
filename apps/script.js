@@ -3,10 +3,12 @@ appdiv.style.display = "none";
 
 const category = [
   {
+    id:1,
     name: "Computer Science",
     value: "computer",
   },
   {
+    id:2,
     name: "biology",
     value: "bio",
   },
@@ -19,7 +21,7 @@ document.getElementById("submit").addEventListener("click", function (e) {
   const quizdiv = document.querySelector("#quizForm");
   let selectedValue = categorySelect.value;
   console.log(selectedValue);
-  // window.location.href = `index.html?type=${selectedValue}`;
+  
   appdiv.style.display = "block";
   quizdiv.style.display = "none";
   updateQuizListUI(selectedValue);
@@ -66,28 +68,27 @@ const bio = [
     id: "1",
     question: "The human heart is ",
     options: [" Neurogenic heart", "Myogenic heart", "Ampullary", "Pulsating"],
-    correctAns: "Myogenic heart",
+    answer: "Myogenic heart",
   },
   {
     id: "2",
     question: "Spermology is the study of ",
     options: ["Seed", "Leaf", "Fruit", "Pollen"],
-    correctAns: "Seed",
+    answer: "Seed",
   },
   {
     id: "3",
     question: "Who is known as father of Zoology ",
     options: ["Darwin", "Aristotlee", "Aristotle", "Theophrastus"],
-    correctAns: "Aristotle",
+    answer: "Aristotle",
   },
 ];
 const questionCollection = {
   computer: computer,
   bio: bio,
 };
-// const urlParams = new URLSearchParams(window.location.search);
-// const myType = urlParams.get("type");
-// console.log(questionCollection[myType]);
+
+
 function makeQuizDiv(quiz) {
   const div = document.createElement("div");
   div.setAttribute("id", `question-${quiz.id}`);
@@ -105,6 +106,7 @@ function makeQuizDiv(quiz) {
     );
     if (selectedOption) {
       const selectedAnswer = selectedOption.value;
+      localStorage.setItem(`answer-${quiz.id}`, selectedAnswer);//local
       if (selectedAnswer === quiz.answer) {
         resDiv.innerHTML = "Correct Answer!";
         resDiv.style.color = "green";

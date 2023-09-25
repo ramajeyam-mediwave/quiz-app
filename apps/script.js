@@ -98,7 +98,7 @@ function makeQuizDiv(quiz) {
   subDiv.setAttribute("class", "subdiv");
   const resDiv = document.createElement("div");
   resDiv.setAttribute("class", "res-div");
-
+    
   button.addEventListener("click", function () {
     const selectedOption = document.querySelector(
       `input[name="answer-${quiz.id}"]:checked`
@@ -143,6 +143,8 @@ function appendToApp(quizDiv) {
   app.appendChild(quizDiv);
 }
 function updateQuizListUI(sub) {
+  const app = document.querySelector("#app");
+  app.innerHTML = "";
   for (let i = 0; i < questionCollection[sub].length; i++) {
     const quizDiv = makeQuizDiv(questionCollection[sub][i]);
     appendToApp(quizDiv);

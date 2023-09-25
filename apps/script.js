@@ -1,3 +1,6 @@
+const appdiv=document.querySelector("#app")
+appdiv.style.display="none";
+
 const category = [
   {
     name: "Computer Science",
@@ -12,8 +15,12 @@ const quizForm = document.getElementById("quizForm");
 const categorySelect = document.getElementById("option");
 document.getElementById("submit").addEventListener("click", function (e) {
   e.preventDefault();
+  const appdiv=document.querySelector("#app")
+  const quizdiv=document.querySelector("#quizForm")
   var selectedValue = categorySelect.value;
-  window.location.href = `index.html?type=${selectedValue}`;
+  // window.location.href = `index.html?type=${selectedValue}`;
+  appdiv.style.display="block";
+  quizdiv.style.display="none";
 });
 for (let sub of category) {
   const option = document.createElement("option");
@@ -80,6 +87,7 @@ function makeQuizDiv(quiz) {
   subDiv.setAttribute("class", "subdiv");
   const resDiv = document.createElement('div');
   resDiv.setAttribute("class", "res-div");
+
   button.addEventListener("click", function () {
     const selectedOption = document.querySelector(`input[name="answer-${quiz.id}"]:checked`);
     if (selectedOption) {

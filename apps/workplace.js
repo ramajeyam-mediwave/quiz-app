@@ -4,11 +4,11 @@ appdiv.style.display = "none";
 const category = [
   {
     name: "Computer Science",
-    value: "computer",
+    value: "Computer_Science",
   },
   {
     name: "biology",
-    value: "bio",
+    value: "biology",
   },
 ];
 const quizForm = document.getElementById("quizForm");
@@ -18,7 +18,7 @@ document.getElementById("submit").addEventListener("click", function (e) {
   const appdiv = document.querySelector("#app");
   const quizdiv = document.querySelector("#quizForm");
   let selectedValue = categorySelect.value;
-  console.log(selectedValue);
+  console.log(selectedValue)
   // window.location.href = `index.html?type=${selectedValue}`;
   appdiv.style.display = "block";
   quizdiv.style.display = "none";
@@ -77,7 +77,7 @@ const bio = [
   {
     id: "3",
     question: "Who is known as father of Zoology ",
-    options: ["Darwin", "Aristotlee", "Aristotle", "Theophrastus"],
+    options: ["Darwin", "Aristotle", "Aristotle", "Theophrastus"],
     correctAns: "Aristotle",
   },
 ];
@@ -143,8 +143,9 @@ function appendToApp(quizDiv) {
   app.appendChild(quizDiv);
 }
 function updateQuizListUI(sub) {
-  for (let i = 0; i < questionCollection[sub].length; i++) {
-    const quizDiv = makeQuizDiv(questionCollection[sub][i]);
+  let selectedValue = categorySelect.value;
+  for (let i = 0; i < questionCollection[selectedValue].length; i++) {
+    const quizDiv = makeQuizDiv(questionCollection[selectedValue][i]);
     appendToApp(quizDiv);
   }
 }

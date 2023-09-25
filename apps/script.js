@@ -1,18 +1,23 @@
-const appdiv = document.querySelector("#app");
-appdiv.style.display = "none";
 
 const category = [
   {
-    id:1,
+    id:100,
     name: "Computer Science",
     value: "computer",
   },
   {
-    id:2,
+    id:200,
     name: "biology",
     value: "bio",
   },
 ];
+
+
+
+
+const appdiv = document.querySelector("#app");
+appdiv.style.display = "none";
+
 const quizForm = document.getElementById("quizForm");
 const categorySelect = document.getElementById("option");
 document.getElementById("submit").addEventListener("click", function (e) {
@@ -35,52 +40,79 @@ for (let sub of category) {
 
 const computer = [
   {
-    id: 1,
+    id: 220,
     question: "What does CPU stand for?",
     options: [
-      "Central Processing Unit",
-      "Computer Personal Unit",
-      "Central Process Unit",
-      "Central Processor Unit",
-    ],
-    answer: "Central Processing Unit",
+      {id: 10, text:"Central Processing Unit",isCorrect: true},
+      {id: 20, text:"Computer Personal Unit", isCorrect:false},
+      {id: 30, text:"Central Process Unit",isCorrect:false},
+      {id:40, text:"Central Processor Unit",isCorrect:false},
+      ],
+    category: 2345,
+    
   },
   {
-    id: 2,
+    id: 230,
     question: "Which programming language is often used for web development?",
-    options: ["Python", "Java", "JavaScript", "C++"],
-    answer: "JavaScript",
+    options: [
+              {id:50,text:"Python", isCorrect:false},
+              {id:51,text:"java", isCorrect:false},
+              {id:52,text:"javascript", isCorrect:true},
+              {id:53,text:"c++", isCorrect:false},
+            ],
+    category:2346
   },
   {
-    id: 3,
+    id: 240,
     question: "What does HTML stand for?",
     options: [
-      "Hypertext Markup Language",
-      "Hyperlink and Text Markup Language",
-      "Highly Textual Markup Language",
-      "Hypertext Text Markup Language",
+      {id:50,text:"Hypertext Markup Language", isCorrect:true},
+      {id:51,text:"Hypelink Markup Language", isCorrect:false},
+      {id:52,text:"Markup Language", isCorrect:false},
+      {id:53,text:"text Markup Language", isCorrect:false},
     ],
-    answer: "Hypertext Markup Language",
+    category:2347
   },
 ];
+// {
+//   id: "1",
+//   question: "The human heart is ",
+//   options: [" Neurogenic heart", "Myogenic heart", "Ampullary", "Pulsating"],
+//   answer: "Myogenic heart",
+// },
 const bio = [
   {
-    id: "1",
+    id: "250",
     question: "The human heart is ",
-    options: [" Neurogenic heart", "Myogenic heart", "Ampullary", "Pulsating"],
-    answer: "Myogenic heart",
+    options: [
+      {id:54,text:"Neurogenic heart", isCorrect:false}, 
+      {id:55,text:"Myogenic heart", isCorrect:true},
+      {id:56,text:"heart", isCorrect:false}, 
+      {id:57,text:"Neurogenic", isCorrect:false}, 
+    ],
+    category: 2350
   },
   {
-    id: "2",
+    id: "260",
     question: "Spermology is the study of ",
-    options: ["Seed", "Leaf", "Fruit", "Pollen"],
-    answer: "Seed",
+    options: [
+      {id:59,text:"Seed",isCorrect:true}, 
+      {id:60,text:"leaf",isCorrect:false}, 
+      {id:61,text:"tree",isCorrect:true},
+      {id:52,text:"grass",isCorrect:true},
+    ],
+    category:2360
   },
   {
-    id: "3",
+    id: "270",
     question: "Who is known as father of Zoology ",
-    options: ["Darwin", "Aristotlee", "Aristotle", "Theophrastus"],
-    answer: "Aristotle",
+    options: [
+      {id:55,text:"Darwin",isCorrect:false},
+      {id:56,text:"Aristotlee",isCorrect:false},
+       {id:57,text:"Aristotle",isCorrect:true},
+       {id:58,text:"thoms",isCorrect:true},
+    ],
+    category:2370
   },
 ];
 const questionCollection = {
@@ -100,18 +132,21 @@ function makeQuizDiv(quiz) {
   const resDiv = document.createElement("div");
   resDiv.setAttribute("class", "res-div");
     
+  // const button = document.createElement("button");
+  // button.setAttribute("class", "btn");
+  // button.innerHTML = "Check Answer";
   button.addEventListener("click", function () {
     const selectedOption = document.querySelector(
       `input[name="answer-${quiz.id}"]:checked`
     );
     if (selectedOption) {
       const selectedAnswer = selectedOption.value;
-      localStorage.setItem(`answer-${quiz.id}`, selectedAnswer);//local
-      if (selectedAnswer === quiz.answer) {
+      const correctAnswer = quiz.options.find(option => option.isCorrect);
+      if (selectedAnswer === correctAnswer.text) {
         resDiv.innerHTML = "Correct Answer!";
         resDiv.style.color = "green";
       } else {
-        resDiv.innerHTML = "Sorry,correct answer is " + quiz.answer;
+        resDiv.innerHTML = "Sorry, correct answer is " + correctAnswer.text;
         resDiv.style.color = "red";
       }
     } else {
@@ -119,15 +154,16 @@ function makeQuizDiv(quiz) {
       resDiv.style.color = "yellow";
     }
   });
+
   for (let i = 0; i < quiz.options.length; i++) {
     const label = document.createElement("label");
     const radio = document.createElement("input");
     radio.setAttribute("type", "radio");
     radio.setAttribute("name", `answer-${quiz.id}`);
     radio.setAttribute("class", "radioBtn");
-    radio.value = quiz.options[i];
+    radio.value = quiz.options[i].text;
     label.appendChild(radio);
-    label.appendChild(document.createTextNode(quiz.options[i]));
+    label.appendChild(document.createTextNode(quiz.options[i].text));
     subDiv.appendChild(label);
   }
   div.appendChild(h2);

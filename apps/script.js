@@ -45,7 +45,6 @@ const state = {
       ],
       category: 100,
     },
-
     {
       id: "250",
       question: "The human heart is ",
@@ -81,10 +80,8 @@ const state = {
     },
   ],
 };
-
 const appdiv = document.querySelector("#app");
 appdiv.style.display = "none";
-
 const quizForm = document.getElementById("quizForm");
 const categorySelect = document.getElementById("option");
 document.getElementById("submit").addEventListener("click", function (e) {
@@ -93,7 +90,6 @@ document.getElementById("submit").addEventListener("click", function (e) {
   const quizdiv = document.querySelector("#quizForm");
   let selectedValue = categorySelect.value;
   console.log(selectedValue);
-
   appdiv.style.display = "block";
   quizdiv.style.display = "none";
   updateQuizListUI(selectedValue);
@@ -105,7 +101,6 @@ for (let sub of state.categories) {
   option.innerHTML = sub.name;
   categorySelect.appendChild(option);
 }
-
 function makeQuizDiv(quiz) {
   const div = document.createElement("div");
   div.setAttribute("id", `question-${quiz.id}`);
@@ -116,7 +111,6 @@ function makeQuizDiv(quiz) {
   subDiv.setAttribute("class", "subdiv");
   const resDiv = document.createElement("div");
   resDiv.setAttribute("class", "res-div");
-
   // const button = document.createElement("button");
   // button.setAttribute("class", "btn");
   // button.innerHTML = "Check Answer";
@@ -125,9 +119,12 @@ function makeQuizDiv(quiz) {
       `input[name="answer-${quiz.id}"]:checked`
     );
     if (selectedOption) {
-      const selectedAnswer = selectedOption.value;
+      const userAnswer = selectedOption.value;
+    const answerIndex = quiz["options"].findIndex(
+      (item) => item.text === userAnswer
+    );
       const correctAnswer = quiz.options.find((option) => option.isCorrect);
-      if (selectedAnswer === correctAnswer.text) {
+      if (quiz["options"][answerIndex].isCorrect) {
         resDiv.innerHTML = "Correct Answer!";
         resDiv.style.color = "green";
       } else {
@@ -139,7 +136,6 @@ function makeQuizDiv(quiz) {
       resDiv.style.color = "yellow";
     }
   });
-
   for (let i = 0; i < quiz.options.length; i++) {
     const label = document.createElement("label");
     const radio = document.createElement("input");
@@ -165,14 +161,12 @@ function appendToApp(quizDiv) {
   const app = document.querySelector("#app");
   app.appendChild(quizDiv);
 }
-
 function updateQuizListUI(sub) {
   quizForm.style.display = "none";
   appdiv.style.display = "block";
   setCategoryInStorage(sub);
   const app = document.querySelector("#app");
   app.innerHTML = "";
-
   // filter questions that have the category `sub`
   const filteredQuestions = state.questions.filter((q) => q.category == sub);
   for (let i = 0; i < filteredQuestions.length; i++) {
@@ -191,15 +185,12 @@ function goBack() {
   quizdiv.style.display = "block";
   setCategoryInStorage("");
 }
-
 function setCategoryInStorage(categoryId) {
   localStorage.setItem("selected_category", categoryId);
 }
-
 function getCategoryFromStorage(categoryId) {
   return localStorage.getItem("selected_category");
 }
-
 // on page load, if a category is found in storage
 // show all questions belonging to that category
 function checkIfCategoryIsSaved() {
@@ -209,3 +200,8 @@ function checkIfCategoryIsSaved() {
   }
 }
 checkIfCategoryIsSaved();
+
+
+
+
+

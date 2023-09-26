@@ -80,19 +80,26 @@ const state = {
     },
   ],
 };
+
 const appdiv = document.querySelector("#app");
 appdiv.style.display = "none";
 const quizForm = document.getElementById("quizForm");
 const categorySelect = document.getElementById("option");
+
 document.getElementById("submit").addEventListener("click", function (e) {
   e.preventDefault();
   const appdiv = document.querySelector("#app");
   const quizdiv = document.querySelector("#quizForm");
   let selectedValue = categorySelect.value;
-  console.log(selectedValue);
-  appdiv.style.display = "block";
-  quizdiv.style.display = "none";
-  updateQuizListUI(selectedValue);
+  if (selectedValue) {
+    console.log(selectedValue);
+    appdiv.style.display = "block";
+    quizdiv.style.display = "none";
+    updateQuizListUI(selectedValue);
+  } else {
+    console.log(selectedValue);
+    alert("please fill the category");
+  }
 });
 for (let sub of state.categories) {
   const option = document.createElement("option");
@@ -105,24 +112,34 @@ function makeQuizDiv(quiz) {
   const div = document.createElement("div");
   div.setAttribute("id", `question-${quiz.id}`);
   div.setAttribute("class", "quiz-app");
+
   const h2 = document.createElement("h2");
   h2.innerText = quiz.question;
+
   const subDiv = document.createElement("div");
   subDiv.setAttribute("class", "subdiv");
+
   const resDiv = document.createElement("div");
   resDiv.setAttribute("class", "res-div");
+
   // const button = document.createElement("button");
   // button.setAttribute("class", "btn");
   // button.innerHTML = "Check Answer";
+
+  //take selected answer
+
   button.addEventListener("click", function () {
     const selectedOption = document.querySelector(
       `input[name="answer-${quiz.id}"]:checked`
     );
+    //filtering option using index
     if (selectedOption) {
       const userAnswer = selectedOption.value;
-    const answerIndex = quiz["options"].findIndex(
-      (item) => item.text === userAnswer
-    );
+      const answerIndex = quiz["options"].findIndex(
+        (item) => item.id == userAnswer
+      );
+
+      //display correct answer
       const correctAnswer = quiz.options.find((option) => option.isCorrect);
       if (quiz["options"][answerIndex].isCorrect) {
         resDiv.innerHTML = "Correct Answer!";
@@ -142,7 +159,7 @@ function makeQuizDiv(quiz) {
     radio.setAttribute("type", "radio");
     radio.setAttribute("name", `answer-${quiz.id}`);
     radio.setAttribute("class", "radioBtn");
-    radio.value = quiz.options[i].text;
+    radio.value = quiz.options[i].id;
     label.appendChild(radio);
     label.appendChild(document.createTextNode(quiz.options[i].text));
     subDiv.appendChild(label);
@@ -200,8 +217,3 @@ function checkIfCategoryIsSaved() {
   }
 }
 checkIfCategoryIsSaved();
-
-
-
-
-
